@@ -12,7 +12,7 @@ Print the number of ways Srba can choose a part of the orchard to harvest.
 
 Example:
 Input:
-3 3 5
+3 3 5\n
 2 9 3
 10 8 6
 1 4 12
