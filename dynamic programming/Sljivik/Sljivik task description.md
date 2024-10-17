@@ -12,7 +12,7 @@ Print the number of ways Srba can choose a part of the orchard to harvest.
 
 Example:
 Input:
-3 3 5\n
+3 3 5
 2 9 3
 10 8 6
 1 4 12
@@ -20,4 +20,4 @@ Input:
 Output:
 4
 
-Explanation: The following rectangles are adequate: (1,1)-(3,3) , (2,1)-(2,1) , (3,1)-(3,2) , (2,2)-(3,3), where the first pair represents the upper left and the second pair the lower righr vertex of the selected rectangle.
+Explanation: The following rectangles are adequate: (1,1)-(3,3) , (2,1)-(2,1) , (3,1)-(3,2) , (2,2)-(3,3), where the first pair represents the upper left and the second pair the lower right vertex of the selected rectangle.
