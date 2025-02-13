@@ -83,7 +83,7 @@ namespace Statistika
         }
     }
 
-    class Program
+    class Statistika
     {
         public static Node MakeTree(int[] a, int left_bound, int right_bound)
         {
