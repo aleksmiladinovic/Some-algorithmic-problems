@@ -10,7 +10,6 @@ namespace Statistika
         public int rightBound;
         public Node? leftChild;
         public Node? rightChild;
-        public Node? parent;
 
         public Node()
         {
@@ -20,7 +19,6 @@ namespace Statistika
             numOccurences = 0;
             leftChild = null;
             rightChild = null;
-            parent = null;
         }
 
         public Node( Node n )
@@ -31,7 +29,6 @@ namespace Statistika
             numOccurences = n.numOccurences;
             leftChild = n.leftChild;
             rightChild = n.rightChild;
-            parent = n.parent;
         }
     }
 
@@ -42,7 +39,6 @@ namespace Statistika
         public int rightBound;
         public NodePointer? leftChild;
         public NodePointer? rightChild;
-        public NodePointer? parent;
 
         public NodePointer()
         {
@@ -51,7 +47,6 @@ namespace Statistika
             rightBound = 0;
             leftChild = null;
             rightChild = null;
-            parent = null;
         }
 
         public NodePointer( Node element )
@@ -61,7 +56,6 @@ namespace Statistika
             rightBound = 0;
             leftChild = null;
             rightChild = null;
-            parent = null;
         }
     }
 
@@ -89,10 +83,8 @@ namespace Statistika
         }
     }
 
-
     class Program
     {
-
         public static Node MakeTree(int[] a, int left_bound, int right_bound)
         {
             Node node = new Node();
@@ -114,9 +106,6 @@ namespace Statistika
             
                 node.leftChild = left_child;
                 node.rightChild = right_child;
-
-                left_child.parent = node;
-                right_child.parent = node;
 
                 int mvl = left_child.minValue;
                 int mvr = right_child.minValue;
@@ -177,14 +166,12 @@ namespace Statistika
             {
                 Node left_child = MergeTrees(tree1.leftChild, tree2.leftChild);
                 merged_tree.leftChild = left_child;
-                left_child.parent = merged_tree;
             }
 
             if(tree1.rightChild != null)
             {
                 Node right_child = MergeTrees(tree1.rightChild, tree2.rightChild);
                 merged_tree.rightChild = right_child;
-                right_child.parent = merged_tree;
             }
 
             return merged_tree;
@@ -227,34 +214,7 @@ namespace Statistika
             Pair right_pair = SearchTree(tree.rightChild, left_bound, right_bound);
 
             return ComparePairs(left_pair, right_pair);
-            /*
-            if( left_pair.occurence == 0 ) return right_pair;
-
-            if( right_pair.occurence == 0 ) return left_pair;
-
-            int mv, no;
-
-            if(left_pair.value < right_pair.value)
-            {
-                mv = left_pair.value;
-                no = left_pair.occurence;
-            }
-            else if(left_pair.value > right_pair.value)
-            {
-                mv = right_pair.value;
-                no = right_pair.occurence;
-            }
-            else
-            {
-                mv = left_pair.value;
-                no = left_pair.occurence + right_pair.occurence;
-            }
-
-            return new Pair(mv, no);
-            */
         }
-
-
         
         public static NodePointer MakeForest(Node[] tree, int left_bound, int right_bound)
         {
@@ -275,9 +235,6 @@ namespace Statistika
 
                 new_tree.leftChild = left_child;
                 new_tree.rightChild = right_child;
-
-                left_child.parent = new_tree;
-                right_child.parent = new_tree;
 
                 new_tree.node = MergeTrees(left_child.node, right_child.node);
             }
@@ -300,58 +257,6 @@ namespace Statistika
             Pair right_pair = SearchForest(forest.rightChild, x_lb, x_rb, y_lb, y_rb);
 
             return ComparePairs(left_pair, right_pair);
-
-            /*
-            if( left_pair.occurence == 0 ) return right_pair;
-
-            if( right_pair.occurence == 0 ) return left_pair;
-
-            int mv, no;
-
-            if(left_pair.value < right_pair.value)
-            {
-                mv = left_pair.value;
-                no = left_pair.occurence;
-            }
-            else if(left_pair.value > right_pair.value)
-            {
-                mv = right_pair.value;
-                no = right_pair.occurence;
-            }
-            else
-            {
-                mv = left_pair.value;
-                no = left_pair.occurence + right_pair.occurence;
-            }
-
-            return new Pair(mv, no);
-            */
-        }
-        
-
-        
-        public static void WriteDownTree(Node tree)
-        {
-            int mv = tree.minValue;
-            int no = tree.numOccurences;
-
-            Console.Write("("+mv+","+no+") ");
-
-            if( tree.leftChild != null ) WriteDownTree(tree.leftChild);
-
-            if( tree.rightChild != null ) WriteDownTree(tree.rightChild);
-        }
-        
-
-        public static void WriteDownForest(NodePointer forest)
-        {
-            Console.Write("Tree: lb: "+forest.leftBound+" rb: "+forest.rightBound+" :");
-            WriteDownTree(forest.node);
-            Console.WriteLine();
-
-            if(forest.leftChild != null) WriteDownForest(forest.leftChild);
-
-            if(forest.rightChild != null) WriteDownForest(forest.rightChild);
         }
 
         public static void Main()
@@ -376,17 +281,7 @@ namespace Statistika
             for(int i=0; i<n; i++)
                 seg_tree[i] = MakeTree(a[i], 0, m-1);
 
-            /*
-            for(int i=0; i<n; i++)
-            {
-                WriteDownTree(seg_tree[i]);
-                Console.WriteLine();
-            }
-            */
-
             NodePointer seg_forest = MakeForest(seg_tree, 0, n-1);
-
-            WriteDownForest(seg_forest);
 
             for(int i=0; i<q; i++)
             {
@@ -396,12 +291,7 @@ namespace Statistika
                 x = Convert.ToInt32(inputLine[0]);
                 y = Convert.ToInt32(inputLine[1]);
                 h = Convert.ToInt32(inputLine[2]);
-                w = Convert.ToInt32(inputLine[3]);
-
-                //Pair p = SearchForest(seg_forest, x-1, x+w-2 ,y-1, y+h-2);
-                //Console.WriteLine(p.occurence);
-
-                
+                w = Convert.ToInt32(inputLine[3]);       
 
                 Pair pair_up, pair_down, pair_left, pair_right;
 
@@ -419,8 +309,7 @@ namespace Statistika
 
                 Pair result_pair = ComparePairs( ComparePairs(pair_up, pair_down), ComparePairs(pair_left, pair_right) );
 
-                Console.WriteLine(result_pair.occurence);
-                
+                Console.WriteLine(result_pair.occurence); 
             }
         }
     }
