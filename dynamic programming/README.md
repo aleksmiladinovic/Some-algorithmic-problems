@@ -1,3 +1,3 @@
 ## List of tasks in DYNAMIC PROGRAMMING
 
-**1.** Sljivik - Serbian regional competition 2012.
+**1.** Sljivik - Serbian Regional Competition 2012.
