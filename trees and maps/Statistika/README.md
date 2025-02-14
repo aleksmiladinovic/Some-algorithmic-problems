@@ -1,4 +1,4 @@
-# Statistika (Statistic)
+# Statistika (Statistics)
 
 You have gained the access to a database containing information about a virus in your city, from which we can obtain insights about the spread of the disease. The city is divided into fields that make a matrix **a** with **n** rows and **m** columns. The values **a[i][j]** in the database represent the number of cases of the virus in the field **(i,j)**.
 
