@@ -8,7 +8,7 @@ In one such operation, you are allowed to pick one edge from the tree and move i
 
 **Input:**  
 In the first line of input is the number **t** ($1\leq t\leq 10$), the number of test cases. Each test case consists of the following:  
-The first line consists of two integers **n** and **k** ($n\leq 3000$, $0\leq k \leq n$). The following $n-1$ lines contain two numbers each, describing the nodes of the tree connected by an edge.
+The first line consists of two integers **n** and **k** ($1\leq n\leq 3000$, $0\leq k \leq n$). The following $n-1$ lines contain two numbers each, describing the nodes of the tree connected by an edge.
 
 **Output:**  
 For each test case you should print one integer, the maximal diameter of the tree after $k$ operations.
